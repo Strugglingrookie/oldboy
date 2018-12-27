@@ -44,22 +44,239 @@
 -- 18、查询生物成绩不及格的学生姓名和对应生物分数
 -- SELECT a.sname,c.num FROM student a INNER JOIN (SELECT b.student_id,b.num from score b where b.course_id=(SELECT cid from course where cname="生物") and b.num<60) c ON a.sid = c.student_id;
 -- 19、查询在所有选修了李平老师课程的学生中，这些课程(李平老师的课程，不是所有课程)平均成绩最高的学生姓名
--- SELECT sname FROM student WHERE sid =
--- (SELECT e.student_id FROM (SELECT d.student_id,avg(d.num) avg_num FROM
--- (SELECT a.* FROM score a WHERE a.course_id IN (SELECT b.cid from course b where b.teacher_id = (SELECT c.tid from teacher c WHERE c.tname = "李平老师" ))) d GROUP BY d.student_id) e
--- WHERE e.avg_num = (SELECT max(f.avg_num) FROM(SELECT d.student_id,avg(d.num) avg_num FROM
--- (SELECT a.* FROM score a WHERE a.course_id IN (SELECT b.cid from course b where b.teacher_id = (SELECT c.tid from teacher c WHERE c.tname = "李平老师" ))) d GROUP BY d.student_id) f))
+/*
+SELECT
+	sname
+FROM
+	student
+WHERE
+	sid = (
+		SELECT
+			a.student_id
+		FROM
+			score a
+		WHERE
+			a.course_id IN(
+				SELECT
+					b.cid
+				FROM
+					course b
+				WHERE
+					b.teacher_id =(
+						SELECT
+							c.tid
+						FROM
+							teacher c
+						WHERE
+							c.tname = "李平老师"
+					)
+			)
+		GROUP BY
+			a.student_id
+		ORDER BY
+			avg(num) DESC
+		LIMIT
+			1
+	)
+*/
 -- 20、查询每门课程成绩最好的前两名学生姓名
--- SELECT f.sname,h.cname,h.num from student f inner JOIN
--- (SELECT g.cname,e.student_id,e.num from course g inner JOIN
--- (SELECT * FROM (SELECT * FROM score a WHERE a.course_id=1 ORDER BY a.num DESC LIMIT 2) a UNION ALL
--- SELECT * FROM (SELECT * FROM score a WHERE a.course_id=2 ORDER BY a.num DESC LIMIT 2) b UNION ALL
--- SELECT * FROM (SELECT * FROM score a WHERE a.course_id=3 ORDER BY a.num DESC LIMIT 2) c UNION ALL
--- SELECT * FROM (SELECT * FROM score a WHERE a.course_id=4 ORDER BY a.num DESC LIMIT 2) d) e on g.cid = e.course_id) h on f.sid = h.student_id;
+/*
+SELECT
+	e.sname,
+	f.course_id,
+	f.num
+FROM
+	student e
+INNER JOIN(
+	SELECT
+		c.*
+	FROM
+		score c
+	INNER JOIN(
+		SELECT
+			*
+		FROM
+			(
+				SELECT
+					course_id,
+					MAX(num)num
+				FROM
+					score
+				GROUP BY
+					course_id
+				ORDER BY
+					course_id,
+					num DESC
+			)a
+		union all
+			(
+				SELECT
+					a.course_id,
+					MAX(a.num)num
+				FROM
+					score a
+				INNER JOIN(
+					SELECT
+						course_id,
+						MAX(num)num
+					FROM
+						score
+					GROUP BY
+						course_id
+					ORDER BY
+						course_id,
+						num DESC
+				)b ON a.course_id = b.course_id
+				WHERE
+					a.num < b.num
+				GROUP BY
+					a.course_id
+			)
+	)d on c.course_id = d.course_id
+	WHERE
+		c.num = d.num
+	ORDER BY
+		c.course_id,
+		c.num DESC
+)f on e.sid = f.student_id
+ORDER BY
+	f.course_id,
+	f.num DESC
+*/
 -- 21、查询不同课程但成绩相同的学号，课程号，成绩
-
+/*
+SELECT
+	student_id,course_id,num
+FROM
+	score
+WHERE
+	num IN (
+		SELECT
+			a.num
+		FROM
+			(SELECT * FROM score GROUP BY course_id,num) a
+		GROUP BY
+			a.num
+		HAVING
+			count(a.num) > 1
+	)
+ORDER BY
+	num
+;
+*/
 -- 22、查询没学过“叶平”老师课程的学生姓名以及选修的课程名称；
---
+/*
+SELECT
+	c.sname,GROUP_CONCAT(d.cname)
+FROM
+	(
+	SELECT
+		a.*,b.course_id
+	FROM
+		(SELECT
+			*
+		FROM
+			student
+		WHERE
+			sid
+		 NOT IN (
+			SELECT
+				DISTINCT(student_id)
+			FROM
+				score
+			WHERE
+				course_id IN (
+					SELECT
+						cid
+					FROM
+						course
+					WHERE
+						teacher_id = (
+							SELECT
+								tid
+							FROM
+								teacher
+							WHERE
+								tname = "李平老师"
+					)
+				)
+		)
+	) a
+	inner JOIN
+		score b
+	ON
+		a.sid = b.student_id
+) c
+INNER JOIN
+	course d
+ON
+	c.course_id = d.cid
+GROUP BY
+	c.sname
+*/
 -- 23、查询所有选修了学号为1的同学选修过的一门或者多门课程的同学学号和姓名；
---
+/*
+SELECT
+	a.sid,a.sname
+FROM
+	student a
+INNER JOIN
+	(SELECT
+		student_id
+	FROM
+		score
+	WHERE
+		student_id != 1
+	AND
+		course_id IN(
+			SELECT
+				course_id
+			from
+				score
+			WHERE
+				student_id = 1
+		)
+	GROUP BY
+		student_id
+	) b
+ON
+a.sid = b.student_id
+*/
 -- 24、任课最多的老师中学生单科成绩最高的学生姓名
+/*
+SELECT
+	sname
+FROM
+	student
+WHERE
+	sid = (
+		SELECT
+			student_id
+		FROM
+			score
+		WHERE
+			course_id in (
+				SELECT
+					cid
+				FROM
+					course
+				WHERE
+					teacher_id = (
+						SELECT
+							teacher_id
+						FROM
+							course
+						GROUP BY
+							teacher_id
+						ORDER BY
+							count(teacher_id) DESC
+						LIMIT
+							1
+					)
+			)
+		ORDER BY
+			num DESC
+		LIMIT
+			1
+	)
+*/

@@ -8,3 +8,5 @@ from core.server import Myserver
 
 def start():
     Myserver.run()
+
+start()
