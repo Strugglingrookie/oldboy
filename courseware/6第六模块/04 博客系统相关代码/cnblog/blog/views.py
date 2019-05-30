@@ -45,7 +45,7 @@ def login(request):
 
         return JsonResponse(response)
 
-    return render(request, "login.html")
+    return render(request, "login.02Html")
 
 
 def index(request):
@@ -56,7 +56,7 @@ def index(request):
     """
     article_list = models.Article.objects.all()
 
-    return render(request, "index.html", {"article_list": article_list})
+    return render(request, "index.02Html", {"article_list": article_list})
 
 
 def logout(request):
@@ -119,7 +119,7 @@ def register(request):
         return JsonResponse(response)
 
     form = UserForm()
-    return render(request, "register.html", {"form": form})
+    return render(request, "register.02Html", {"form": form})
 
 
 def home_site(request, username, **kwargs):
@@ -134,7 +134,7 @@ def home_site(request, username, **kwargs):
     user = UserInfo.objects.filter(username=username).first()
     # 判断用户是否存在!
     if not user:
-        return render(request, "not_found.html")
+        return render(request, "not_found.02Html")
 
     # 查询当前站点对象
 
@@ -202,7 +202,7 @@ def home_site(request, username, **kwargs):
 
 
 
-    return render(request, "home_site.html", {"username": username, "blog": blog, "article_list": article_list,})
+    return render(request, "home_site.02Html", {"username": username, "blog": blog, "article_list": article_list,})
 
 
 def get_classification_data(username):
@@ -235,7 +235,7 @@ def article_detail(request, username, article_id):
 
     comment_list = models.Comment.objects.filter(article_id=article_id)
 
-    return render(request, "article_detail.html", locals())
+    return render(request, "article_detail.02Html", locals())
 
 
 def digg(request):
@@ -340,7 +340,7 @@ def cn_backend(request):
     """
     article_list = models.Article.objects.filter(user=request.user)
 
-    return render(request, "backend/backend.html", locals())
+    return render(request, "backend/backend.02Html", locals())
 
 
 from bs4 import BeautifulSoup
@@ -358,7 +358,7 @@ def add_article(request):
         content = request.POST.get("content")
 
         # 防止xss攻击,过滤script标签
-        soup=BeautifulSoup(content,"html.parser")
+        soup=BeautifulSoup(content,"02Html.parser")
         for tag in soup.find_all():
 
             print(tag.name)
@@ -372,7 +372,7 @@ def add_article(request):
         models.Article.objects.create(title=title,desc=desc,content=str(soup), user=request.user)
         return redirect("/cn_backend/")
 
-    return render(request, "backend/add_article.html")
+    return render(request, "backend/add_article.02Html")
 
 
 def upload(request):

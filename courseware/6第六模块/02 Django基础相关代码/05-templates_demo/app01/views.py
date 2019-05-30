@@ -60,8 +60,8 @@ def index(request):
     user="alex"
 
 
-    #return render(request,"index.html",{"n":name})
-    return render(request,"index.html",locals())
+    #return render(request,"index.02Html",{"n":name})
+    return render(request,"index.02Html",locals())
 
 
 
@@ -72,11 +72,11 @@ def login(request):
         return HttpResponse("OK")
 
 
-    return render(request,"login.html")
+    return render(request,"login.02Html")
 
 
 
 
 def orders(request):
 
-    return render(request,"orders.html")
+    return render(request,"orders.02Html")

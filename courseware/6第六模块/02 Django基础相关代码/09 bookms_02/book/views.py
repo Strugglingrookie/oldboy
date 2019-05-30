@@ -29,7 +29,7 @@ def add_book(request):
     publish_list=Publish.objects.all()
     author_list=Author.objects.all()
 
-    return render(request,"addbook.html",{"author_list":author_list,"publish_list":publish_list})
+    return render(request,"addbook.02Html",{"author_list":author_list,"publish_list":publish_list})
 
 
 
@@ -37,7 +37,7 @@ def add_book(request):
 def books(request):
 
     book_list=Book.objects.all()
-    return render(request,"books.html",{"book_list":book_list})
+    return render(request,"books.02Html",{"book_list":book_list})
 
 
 def change_book(request,edit_book_id):
@@ -64,7 +64,7 @@ def change_book(request,edit_book_id):
     publish_list=Publish.objects.all()
     author_list=Author.objects.all()
 
-    return render(request,"editbook.html",{"edit_book_obj":edit_book_obj,"publish_list":publish_list,"author_list":author_list})
+    return render(request,"editbook.02Html",{"edit_book_obj":edit_book_obj,"publish_list":publish_list,"author_list":author_list})
 
 
 def delete_book(request,delete_book_id):

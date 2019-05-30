@@ -18,7 +18,7 @@ KindEditor.plugin('code', function(K) {
 				'<div class="ke-dialog-row">',
 				'<select class="ke-code-type">',
 				'<option value="js">JavaScript</option>',
-				'<option value="html">HTML</option>',
+				'<option value="02Html">HTML</option>',
 				'<option value="css">CSS</option>',
 				'<option value="php">PHP</option>',
 				'<option value="pl">Perl</option>',

@@ -17,7 +17,7 @@ def timer(request):
     print(url)
 
 
-    return render(request,"timer.html",{"date":ctime})
+    return render(request,"timer.02Html",{"date":ctime})
 
 
 
@@ -71,7 +71,7 @@ def login(request):
     print(request.method)
 
     if request.method=="GET":
-        return render(request,"login.html")
+        return render(request,"login.02Html")
 
     else:
         print(request.GET)

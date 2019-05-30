@@ -1,7 +1,7 @@
 
 def login(environ):
 
-    with open("templates/login.html","rb") as f:
+    with open("templates/login.02Html","rb") as f:
              data=f.read()
     return data
 
@@ -9,7 +9,7 @@ from urllib.parse import parse_qs
 
 def index(environ):
 
-     with open("templates/index.html","rb") as f:
+     with open("templates/index.02Html","rb") as f:
         data=f.read()
      return data
 
@@ -21,7 +21,7 @@ def fav(environ):
 
 def reg(environ):
 
-    with open("templates/reg.html","rb") as f:
+    with open("templates/reg.02Html","rb") as f:
         data=f.read()
     return data
 
@@ -63,7 +63,7 @@ def auth(request):
 
     if cur.fetchone():
 
-            f=open("templates/backend.html","rb")
+            f=open("templates/backend.02Html","rb")
             data=f.read()
             data=data.decode("utf8")
             return data.encode("utf8")

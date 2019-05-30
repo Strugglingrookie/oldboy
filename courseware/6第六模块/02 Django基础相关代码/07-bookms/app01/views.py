@@ -17,7 +17,7 @@ def addbook(request):
 
         return redirect("/books/")
 
-    return render(request,"addbook.html")
+    return render(request,"addbook.02Html")
 
 
 
@@ -27,7 +27,7 @@ def books(request):
     book_list=Book.objects.all() # [obj1,obj2,....]
 
 
-    return render(request,"books.html",locals())
+    return render(request,"books.02Html",locals())
 
 
 
@@ -46,7 +46,7 @@ def changebook(request,id):
 
         return redirect("/books/")
 
-    return render(request,"changebook.html",{"book_obj":book_obj})
+    return render(request,"changebook.02Html",{"book_obj":book_obj})
 
 
 

@@ -6,7 +6,7 @@ from wsgiref.simple_server import make_server
 
 def application(environ, start_response):
 
-    start_response('200 OK', [('Content-Type', 'text/html'),("Charset","utf8")])
+    start_response('200 OK', [('Content-Type', 'text/02Html'),("Charset","utf8")])
 
     print("PATH",environ.get("PATH_INFO"))
 
@@ -21,12 +21,12 @@ def application(environ, start_response):
     #     return [data]
     #
     # elif path=="/login":
-    #      with open("login.html","rb") as f:
+    #      with open("login.02Html","rb") as f:
     #         data=f.read()
     #      return [data]
     #
     # elif path=="/index":
-    #      with open("index.html","rb") as f:
+    #      with open("index.02Html","rb") as f:
     #         data=f.read()
     #      return [data]
     # 方案2:

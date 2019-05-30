@@ -62,7 +62,7 @@ jQuery是一个快速，小巧，功能丰富的JavaScript库。它通过易于�
     <div></div>
     <div></div>
     <div></div>
-    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script type="text/javascript" src=03Js></script>
     <script type="text/javascript">
         $(document).ready(function(){
             // 获取dom元素

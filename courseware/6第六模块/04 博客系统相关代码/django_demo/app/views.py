@@ -13,7 +13,7 @@ mobile_geetest_key = "f5883f4ee3bd4fa8caec67941de1b903"
 
 
 def home(request):
-    return render(request, "index.html",)
+    return render(request, "index.02Html",)
 
 
 def pcgetcaptcha(request):
@@ -47,7 +47,7 @@ def pcvalidate(request):
             result = gt.success_validate(challenge, validate, seccode, user_id)
         else:
             result = gt.failback_validate(challenge, validate, seccode)
-        result = "<html><body><h1>登录成功</h1></body></html>" if result else "<html><body><h1>登录失败</h1></body></html>"
+        result = "<02Html><body><h1>登录成功</h1></body></02Html>" if result else "<02Html><body><h1>登录失败</h1></body></02Html>"
         return HttpResponse(result)
     return HttpResponse("error")
 

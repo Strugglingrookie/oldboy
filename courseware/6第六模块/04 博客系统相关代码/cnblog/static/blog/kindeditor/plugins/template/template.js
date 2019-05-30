@@ -9,7 +9,7 @@
 
 KindEditor.plugin('template', function(K) {
 	var self = this, name = 'template', lang = self.lang(name + '.'),
-		htmlPath = self.pluginsPath + name + '/html/';
+		htmlPath = self.pluginsPath + name + '/02Html/';
 	function getFilePath(fileName) {
 		return htmlPath + fileName + '?ver=' + encodeURIComponent(K.DEBUG ? K.TIME : K.VERSION);
 	}

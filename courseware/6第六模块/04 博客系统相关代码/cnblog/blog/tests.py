@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 s="<h1>hello</h1><span>123</span><script>alert(123)</script>"
 
-soup=BeautifulSoup(s,"html.parser")
+soup=BeautifulSoup(s,"02Html.parser")
 
 # print(soup.text)
 

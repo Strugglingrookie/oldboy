@@ -36,12 +36,12 @@ KindEditor.plugin('wordpaste', function(K) {
 			doc.designMode = 'on';
 		}
 		doc.open();
-		doc.write('<!doctype html><html><head><title>WordPaste</title></head>');
+		doc.write('<!doctype 02Html><02Html><head><title>WordPaste</title></head>');
 		doc.write('<body style="background-color:#FFF;font-size:12px;margin:2px;">');
 		if (!K.IE) {
 			doc.write('<br />');
 		}
-		doc.write('</body></html>');
+		doc.write('</body></02Html>');
 		doc.close();
 		if (K.IE) {
 			doc.body.contentEditable = 'true';

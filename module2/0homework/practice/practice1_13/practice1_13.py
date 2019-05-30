@@ -70,11 +70,11 @@ import subprocess
 
 # 8.代码如下：
 # '''
-# Linux当前目录/usr/local/nginx/html/
-# 文件名：index.html
+# Linux当前目录/usr/local/nginx/02Html/
+# 文件名：index.02Html
 # '''
 # import os
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(index.html)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(index.02Html)))
 # print(BASE_DIR)
 # 打印的内容是什么？
 # os.path.dirname和os.path.abspath含义是什么？
@@ -126,15 +126,15 @@ import subprocess
 # print(get_confirm(5))
 
 # 11.利用正则表达式提取到 luffycity.com ，内容如下
-val = '''<!DOCTYPE html>
-<html lang="en">
+val = '''<!DOCTYPE 02Html>
+<02Html lang="en">
 <head>
    <meta charset="UTF-8">
    <title>luffycity.com</title>
 </head>
 <body>
 </body>
-</html>'''
+</02Html>'''
 # import re
 # res = re.findall("[a-z]{9}\.com",val)
 # print(res)

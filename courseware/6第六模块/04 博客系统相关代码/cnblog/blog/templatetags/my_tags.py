@@ -11,7 +11,7 @@ def multi_tag(x,y):
     return x*y
 
 
-@register.inclusion_tag("classification.html")
+@register.inclusion_tag("classification.02Html")
 def get_classification_style(username):
 
     user = models.UserInfo.objects.filter(username=username).first()

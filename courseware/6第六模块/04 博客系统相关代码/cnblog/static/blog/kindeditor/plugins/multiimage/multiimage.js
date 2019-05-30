@@ -107,7 +107,7 @@ K.extend(KSWFUpload, {
 				try {
 					data = K.json(serverData);
 				} catch (e) {
-					self.options.afterError.call(this, '<!doctype html><html>' + serverData + '</html>');
+					self.options.afterError.call(this, '<!doctype 02Html><02Html>' + serverData + '</02Html>');
 				}
 				if (data.error !== 0) {
 					showError(itemDiv, K.DEBUG ? data.message : self.options.errorMessage);

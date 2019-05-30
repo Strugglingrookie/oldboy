@@ -71,7 +71,7 @@ KindEditor.plugin('baidumap', function(K) {
 			searchBtn = K('[name="searchBtn"]', div),
 			checkbox = K('[name="insertDynamicMap"]', dialog.div),
 			win, doc;
-		var iframe = K('<iframe class="ke-textarea" frameborder="0" src="' + self.pluginsPath + 'baidumap/map.html" style="width:' + mapWidth + 'px;height:' + mapHeight + 'px;"></iframe>');
+		var iframe = K('<iframe class="ke-textarea" frameborder="0" src="' + self.pluginsPath + 'baidumap/map.02Html" style="width:' + mapWidth + 'px;height:' + mapHeight + 'px;"></iframe>');
 		function ready() {
 			win = iframe[0].contentWindow;
 			doc = K.iframeDoc(iframe);
